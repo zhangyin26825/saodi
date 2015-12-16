@@ -2,7 +2,7 @@ package com.zhangyin.saodi;
 
 import com.zhangyin.saodi.impl.PositionImpl;
 
-public  class SingleNode extends Coordinate{
+public class SingleNode extends Coordinate{
 	
 	int row;
 	int col;
@@ -19,8 +19,4 @@ public  class SingleNode extends Coordinate{
 		p=new PositionImpl(row, col);
 		this.positions.add(p);
 	}
-
-	
-
-
 }
