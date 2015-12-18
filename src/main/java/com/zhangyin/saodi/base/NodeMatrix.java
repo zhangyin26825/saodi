@@ -31,10 +31,10 @@ public class NodeMatrix {
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
 				if(map.charAt(count)=='0'){
-					Node n=new Node(true);
+					Node n=new Node(true,i,j);
 					nodes[i][j]=n;
 				}else if(map.charAt(count)=='1'){
-					Node n=new Node(false);	
+					Node n=new Node(false,i,j);	
 					nodes[i][j]=n;
 				}
 				count++;
@@ -68,7 +68,7 @@ public class NodeMatrix {
 					 if(right!=null&&right.isBlank){
 						 n.canMoveDirection.put(Direction.Right, right);
 					 }
-					 
+					 n.initdegree();
 					 set.add(n);
 				}
 			}

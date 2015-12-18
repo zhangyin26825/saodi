@@ -5,14 +5,25 @@ import java.util.Map;
 
 public class Node {
 	
+	 public int i;
+	 
+	 public int j;
+	
 	 boolean isBlank;
 	
-	 Map<Direction,Node> canMoveDirection;
+	 public Map<Direction,Node> canMoveDirection;
+	 
+	 public int degree;
 
-	public Node(boolean isBlank) {
+	 public Node(boolean isBlank,int i,int j) {
 		super();
 		this.isBlank = isBlank;
+		this.i=i;
+		this.j=j;
 		canMoveDirection=new HashMap<Direction, Node>(4);
 	}
-
+	
+	void initdegree(){
+		degree=canMoveDirection.keySet().size();
+	}
 }
