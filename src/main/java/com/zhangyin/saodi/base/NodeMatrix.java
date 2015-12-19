@@ -3,6 +3,8 @@ package com.zhangyin.saodi.base;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.zhangyin.saodi.senior.TwoDegreeOperation;
+
 
 public class NodeMatrix {
 	
@@ -11,7 +13,7 @@ public class NodeMatrix {
 	Integer row;
 	Integer col;
 	
-	
+	Node[][] nodes;
 	
 	public NodeMatrix(String map, Integer level, Integer row, Integer col) {
 		super();
@@ -20,10 +22,10 @@ public class NodeMatrix {
 		this.row = row;
 		this.col = col;
 		assert map.length()==row*col;
+		init();
 	}
-
-	Node[][] nodes;
-
+	
+	//节点数组初始化
 	private void init(){
 		nodes=new Node[row][col];
 		assert map.length()==row*col;
@@ -41,9 +43,8 @@ public class NodeMatrix {
 			}	
 		}	
 	}
-	
+	//初始化节点之间的关系
 	public Set<Node> initMoveDirection(){
-		init();
 		Set<Node> set=new HashSet<Node>();
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
@@ -74,6 +75,23 @@ public class NodeMatrix {
 			}
 		}
 		return set;
+	}
+	//初始化节点是不是作为一个区域的出入点
+	public void initAccessPoint(){
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				Node n=nodes[i][j];
+				if(n.isBlank&&n.degree==2){
+					TwoDegreeOperation.isAccessPoint(n);
+					continue;
+				}
+				if(n.isBlank&&n.degree==3){
+					
+				}
+				
+				
+			}
+		}
 	}
 	
 	private boolean isOutOfRange(int i,int j){

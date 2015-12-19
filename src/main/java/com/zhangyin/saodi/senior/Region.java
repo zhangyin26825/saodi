@@ -7,7 +7,7 @@ import com.zhangyin.saodi.base.Node;
 public class Region {	
 	
 	// 所有的进出口
-	Set<Point> points;  
+	Set<AccessPoint> points;  
 	// 这个区域所有的节点
 	Set<Node> nodes;
 

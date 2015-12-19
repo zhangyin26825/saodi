@@ -14,6 +14,8 @@ public class Node {
 	 public Map<Direction,Node> canMoveDirection;
 	 
 	 public int degree;
+	 
+	 public boolean isAccessPoint=false;
 
 	 public Node(boolean isBlank,int i,int j) {
 		super();
@@ -26,4 +28,6 @@ public class Node {
 	void initdegree(){
 		degree=canMoveDirection.keySet().size();
 	}
+	
+	
 }
