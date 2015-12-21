@@ -3,6 +3,7 @@ package com.zhangyin.saodi.base;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.zhangyin.saodi.senior.ThreeDegreeOperation;
 import com.zhangyin.saodi.senior.TwoDegreeOperation;
 
 
@@ -74,6 +75,7 @@ public class NodeMatrix {
 				}
 			}
 		}
+		initAccessPoint();
 		return set;
 	}
 	//初始化节点是不是作为一个区域的出入点
@@ -86,10 +88,9 @@ public class NodeMatrix {
 					continue;
 				}
 				if(n.isBlank&&n.degree==3){
-					
-				}
-				
-				
+					ThreeDegreeOperation.isAccessPoint(n);
+					continue;
+				}	
 			}
 		}
 	}

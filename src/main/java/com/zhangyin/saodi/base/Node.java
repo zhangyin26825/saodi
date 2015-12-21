@@ -5,6 +5,9 @@ import java.util.Map;
 
 public class Node {
 	
+	
+	 boolean isVirtualNode=false;
+	
 	 public int i;
 	 
 	 public int j;
@@ -24,8 +27,18 @@ public class Node {
 		this.j=j;
 		canMoveDirection=new HashMap<Direction, Node>(4);
 	}
+	 
+	 
 	
-	void initdegree(){
+	public Node() {
+		super();
+		this.isBlank = true;
+		canMoveDirection=new HashMap<Direction, Node>(4);
+	}
+
+
+
+	protected void initdegree(){
 		degree=canMoveDirection.keySet().size();
 	}
 	

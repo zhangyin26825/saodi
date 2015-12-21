@@ -1,5 +1,6 @@
 package com.zhangyin.saodi.base;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public enum Direction {
@@ -50,6 +51,68 @@ public enum Direction {
 			 return true;
 		 }
 		 return false;
+	 }
+	 //查找三个方向里，缺少的那个
+	 public static Direction lackofDirection(Set<Direction> set){
+		 if(set.size()!=3){
+			 throw new IllegalAccessError("不合适 集合类型，数量应当为3,才能判断出缺少的那个方向"); 
+		 }
+		 if(!set.contains(Up)){
+			 return Up;
+		 }
+		 else if(!set.contains(Down)){
+			 return Down;
+		 }
+		 else if(!set.contains(Left)){
+			 return Left;
+		 }else  if(!set.contains(Right)){
+			 return Right;
+		 }else{
+			 //throw new IllegalAccessError("不合适 集合类型，数量应当为3,才能判断出缺少的那个方向"); 
+			 return null;
+		 }
+		 
+	 }
+	 
+	 public static boolean isPair(Direction d1,Direction d2){
+		 Set<Direction> set=new HashSet<Direction>(2);
+		 set.add(d2);
+		 set.add(d1);
+		 if(set.size()!=2){
+			 return false;
+		 }
+		 return isPair(set);
+	 }
+	 //判读两个三度的节点是否满足 AccessPoint的条件
+	 public static boolean isThreeDegreeAccessPoint(Node n,Node node){
+		 Set<Direction> nSet = n.canMoveDirection.keySet();
+		 assert nSet.size()==3;
+		 Set<Direction> nodeSet = node.canMoveDirection.keySet(); 
+		 assert nodeSet.size()==3;
+		 Direction nlackofDirection = lackofDirection(nSet);
+		 Direction nodelackofDirection = lackofDirection(nodeSet);
+		 return isPair(nlackofDirection, nodelackofDirection); 
+	 }
+	 public static Direction [] toArray(Set<Direction> keySet){
+		 Direction [] result=new Direction[keySet.size()];
+		 int i=0;
+		 if(keySet.contains(Up)){
+			 result[i]=Up;
+			 i++;
+		 }
+		 if(keySet.contains(Down)){
+			 result[i]=Down;
+			 i++;
+		 }
+		 if(keySet.contains(Left)){
+			 result[i]=Left;
+			 i++;
+		 }
+		 if(keySet.contains(Right)){
+			 result[i]=Right;
+			 i++;
+		 }
+		 return result;
 	 }
 
 }
