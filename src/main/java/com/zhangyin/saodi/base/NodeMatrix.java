@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.zhangyin.saodi.senior.ThreeDegreeOperation;
 import com.zhangyin.saodi.senior.TwoDegreeOperation;
+import com.zhangyin.saodi.senior.VirtualNodeUtil;
 
 
 public class NodeMatrix {

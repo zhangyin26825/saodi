@@ -69,17 +69,19 @@ public class TwoDegreeNodes {
 			Set<Node> set2 = (Set<Node>) iterator.next();
 			for (Iterator iterator2 = set2.iterator(); iterator2.hasNext();) {
 				Node node = (Node) iterator2.next();
-				Direction[]  array = (Direction[]) node.canMoveDirection.keySet().toArray();
+			//	Direction[]  array = (Direction[]) node.canMoveDirection.keySet().toArray();
+				Direction[]  array =Direction.toArray(node.canMoveDirection.keySet());
 				Direction   A=array[0];
 				Direction   B=array[1];
 				if(node.canMoveDirection.get(B).canMoveDirection.keySet().size()==2&&
 				   node.canMoveDirection.get(A).canMoveDirection.keySet().size()==2){
 					node.isAccessPoint=false;
 				}
-				if(node.canMoveDirection.get(A).canMoveDirection.keySet().size()==3){
+				if(node.canMoveDirection.get(A).canMoveDirection.keySet().size()==3&&node.isAccessPoint){
 					new VirtualNode(node, node.canMoveDirection.get(A));
+					continue;
 				}
-				if(node.canMoveDirection.get(B).canMoveDirection.keySet().size()==3){
+				if(node.canMoveDirection.get(B).canMoveDirection.keySet().size()==3&&node.isAccessPoint){
 					new VirtualNode(node, node.canMoveDirection.get(B));
 				}
 			}
@@ -93,13 +95,17 @@ public class TwoDegreeNodes {
 		 String map="100010000100000000000000000101010000100000001100000110001010000000000110100011000000000111110010000101100001100000000001010000011111110010001110000010100110001100010111100000011000010001111000010000110011000010001110000010001000000000010000000000010101000001100000010000000000001110000010101000000010100110000100000100011000000011010000000100100001000101101011100010000100111000000101100000000110011110000000000101100000011110000000100110000110000000010000000010001000011010001000000101010001000001010011000000100100001001101100000010001000001000110000001001110000100001000100000001111100000100111000";
 		 NodeMatrix nm=new NodeMatrix(map, level, x, y);
 		 Set<Node> initMoveDirection = nm.initMoveDirection();
+		 System.out.println("由3个节点组成的虚拟节点  根据VirtualNodeUtil的长度属性判断虚拟节点的数量为"+VirtualNodeUtil.list.size());	
 		 System.out.println("所有节点总数为"+initMoveDirection.size());
 		 long count = initMoveDirection.stream().filter(n->n.isAccessPoint).count();
+		 TwoDegreeNodes.initTwoDegreeAccessPoint(initMoveDirection);
 		 System.out.println("根据节点的isAccessPoint属性判断虚拟节点的数量为"+count);
 		 System.out.println("根据VirtualNodeUtil的长度属性判断虚拟节点的数量为"+VirtualNodeUtil.list.size());
-		 VirtualNodeUtil.list.stream().forEach(v->{
-			 System.out.println(v.A.i+","+v.A.j+"     "+v.B.i+","+v.B.j);
-		 });
+//		 VirtualNodeUtil.list.stream().forEach(v->{
+//			 System.out.println(v.A.i+","+v.A.j+"     "+v.B.i+","+v.B.j);
+//		 });
+		  count = initMoveDirection.stream().filter(n->n.isAccessPoint).count();
+		 System.out.println("根据节点的isAccessPoint属性判断虚拟节点的数量为"+count);
 //		 TwoDegreeNodes tdn=new TwoDegreeNodes(initMoveDirection);
 		 //List<Set<Node>> initGroup = tdn.initGroup();
 //		 System.out.println("2度分组后的节点集合总数为"+initGroup.size());

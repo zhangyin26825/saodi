@@ -15,7 +15,7 @@ import com.zhangyin.saodi.base.Node;
 public class TwoDegreeOperation {
 	
 	//过滤只有2度的节点
-	public  static Set<Node> filterTwoDegree(Set<Node> set){
+	private  static Set<Node> filterTwoDegree(Set<Node> set){
 		Set<Node> collect = set.stream().filter(n->n.canMoveDirection.keySet().size()==2).collect(Collectors.toSet());
 		System.out.println("所有只有2度的节点总数为"+collect.size());
 		return collect;
