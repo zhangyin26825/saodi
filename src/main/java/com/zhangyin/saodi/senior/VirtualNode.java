@@ -1,5 +1,6 @@
 package com.zhangyin.saodi.senior;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -82,5 +83,28 @@ public class VirtualNode  extends Node{
 		throw new IllegalAccessError("两个相互连接的节点才能生成一个虚拟节点");
 	}
 	 
+	public Set<AccessPoint> toAccessPointSet(){
+		Set<AccessPoint> set=new HashSet<AccessPoint>();
+		Set<Direction> keySet = this.canMoveDirection.keySet();
+		assert keySet.size()==2;
+		AccessPoint A = null,B=null;
+		for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
+			Direction direction = (Direction) iterator.next();
+			AccessPoint a=new AccessPoint(this, direction, null);
+			if(A==null){
+				A=a;
+				continue;
+			}
+			if(B==null){
+				B=a;
+				continue;
+			}
+		}
+		A.setPaired(B);
+		B.setPaired(A);
+		set.add(A);
+		set.add(B);
+		return set;
+	}
 
 }

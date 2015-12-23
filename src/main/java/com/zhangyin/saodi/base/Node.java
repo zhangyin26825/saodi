@@ -6,7 +6,7 @@ import java.util.Map;
 public class Node {
 	
 	
-	 boolean isVirtualNode=false;
+	 public boolean isVirtualNode=false;
 	
 	 public int i;
 	 

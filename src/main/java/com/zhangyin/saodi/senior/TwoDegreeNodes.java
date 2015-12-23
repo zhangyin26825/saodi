@@ -77,11 +77,11 @@ public class TwoDegreeNodes {
 				   node.canMoveDirection.get(A).canMoveDirection.keySet().size()==2){
 					node.isAccessPoint=false;
 				}
-				if(node.canMoveDirection.get(A).canMoveDirection.keySet().size()==3&&node.isAccessPoint){
+				if(node.canMoveDirection.get(A).canMoveDirection.keySet().size()>2&&node.isAccessPoint){
 					new VirtualNode(node, node.canMoveDirection.get(A));
 					continue;
 				}
-				if(node.canMoveDirection.get(B).canMoveDirection.keySet().size()==3&&node.isAccessPoint){
+				if(node.canMoveDirection.get(B).canMoveDirection.keySet().size()>2&&node.isAccessPoint){
 					new VirtualNode(node, node.canMoveDirection.get(B));
 				}
 			}
@@ -110,6 +110,13 @@ public class TwoDegreeNodes {
 		 //List<Set<Node>> initGroup = tdn.initGroup();
 //		 System.out.println("2度分组后的节点集合总数为"+initGroup.size());
 //		 initGroup.stream().forEach(s->System.out.println(s.size()));
+		 List<Region> generateRegion = VirtualNodeUtil.generateRegion();
+		 System.out.println("总共生成的区域总数为"+generateRegion.size());
+		 long count2 = generateRegion.stream().flatMap(r->r.nodes.stream().filter(n->n.isVirtualNode)).count();
+		 System.out.println("区域中所有的节点总数为"+count2);
+		 
+		 long count3 = generateRegion.stream().flatMap(r->r.nodes.stream()).count();
+		 System.out.println("区域中所有的节点总数为"+count3);
 	}
 
 }

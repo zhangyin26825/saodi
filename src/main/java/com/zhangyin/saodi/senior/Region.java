@@ -10,5 +10,13 @@ public class Region {
 	Set<AccessPoint> points;  
 	// 这个区域所有的节点
 	Set<Node> nodes;
+	public Region(Set<AccessPoint> points, Set<Node> nodes) {
+		super();
+		this.points = points;
+		this.nodes = nodes;
+	}
+	
+	
+	
 
 }
