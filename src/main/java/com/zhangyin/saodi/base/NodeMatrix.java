@@ -1,21 +1,25 @@
 package com.zhangyin.saodi.base;
 
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JPanel;
+
 import com.zhangyin.saodi.senior.ThreeDegreeOperation;
 import com.zhangyin.saodi.senior.TwoDegreeOperation;
-import com.zhangyin.saodi.senior.VirtualNodeUtil;
+import com.zhangyin.saodi.ui.MyFrame;
 
 
-public class NodeMatrix {
+public class NodeMatrix  extends JPanel{
 	
 	String map;
 	Integer level;
-	Integer row;
-	Integer col;
+	public Integer row;
+	public Integer col;
 	
-	Node[][] nodes;
+	public Node[][] nodes;
 	
 	public NodeMatrix(String map, Integer level, Integer row, Integer col) {
 		super();
@@ -25,6 +29,24 @@ public class NodeMatrix {
 		this.col = col;
 		assert map.length()==row*col;
 		init();
+		SwingInit();	
+	}
+	
+	public void SwingInit(){
+		GridLayout gridLayout = new GridLayout(row, col,1,1);
+		this.setLayout(gridLayout);
+		//this.setSize(col*MyFrame.widthandHeight, row*MyFrame.widthandHeight);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) { 
+				add(nodes[i][j]);
+			}
+		}
+		
 	}
 	
 	//节点数组初始化
@@ -44,6 +66,7 @@ public class NodeMatrix {
 				count++;
 			}	
 		}	
+		initMoveDirection();
 	}
 	//初始化节点之间的关系
 	public Set<Node> initMoveDirection(){
@@ -135,13 +158,15 @@ public class NodeMatrix {
 		}	
 	}
 	
-	public static void main(String[] args) {
-		 int level=10; 
-		 int x=6;
-		 int y=7;
-		 String map="000000000000000001100100110000010000001000";
+	public static void main(String[] args) {		
+		 int level=64; 
+		 int x=24;
+		 int y=25;
+		 String map="100010000100000000000000000101010000100000001100000110001010000000000110100011000000000111110010000101100001100000000001010000011111110010001110000010100110001100010111100000011000010001111000010000110011000010001110000010001000000000010000000000010101000001100000010000000000001110000010101000000010100110000100000100011000000011010000000100100001000101101011100010000100111000000101100000000110011110000000000101100000011110000000100110000110000000010000000010001000011010001000000101010001000001010011000000100100001001101100000010001000001000110000001001110000100001000100000001111100000100111000";
 		 NodeMatrix nm=new NodeMatrix(map, level, x, y);
-		 Set<Node> initMoveDirection = nm.initMoveDirection();
-		 initMoveDirection.stream().forEach(m->System.out.println(m.canMoveDirection.keySet().size()));
+//		 Set<Node> initMoveDirection = nm.initMoveDirection();
+//		 initMoveDirection.stream().forEach(m->System.out.println(m.canMoveDirection.keySet().size())); 
+		 MyFrame my=new MyFrame(nm);
+		 
 	}
 }

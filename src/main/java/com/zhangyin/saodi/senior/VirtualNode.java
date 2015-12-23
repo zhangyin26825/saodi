@@ -73,6 +73,7 @@ public class VirtualNode  extends Node{
 		}
 		Direction btoaDirection=Direction.getInverseDirection(atobDirection);
 		if(a.canMoveDirection.get(atobDirection)==b&&b.canMoveDirection.get(btoaDirection)==a){
+			
 			super.canMoveDirection.put(atobDirection, b);
 			super.canMoveDirection.put(btoaDirection, a);
 			a.canMoveDirection.put(atobDirection, this);
