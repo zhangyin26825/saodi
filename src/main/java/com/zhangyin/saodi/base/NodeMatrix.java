@@ -66,7 +66,7 @@ public class NodeMatrix  extends JPanel{
 				count++;
 			}	
 		}	
-		initMoveDirection();
+		initALLMoveDirection();
 	}
 	//初始化节点之间的关系
 	public Set<Node> initMoveDirection(){
@@ -102,6 +102,38 @@ public class NodeMatrix  extends JPanel{
 		initAccessPoint();
 		return set;
 	}
+	
+	public void initALLMoveDirection(){
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				Node n=nodes[i][j];
+				if(n.isBlank){
+					 Node up = getUp(i, j);
+					 if(up!=null&&up.isBlank){
+						 n.canMoveDirection.put(Direction.Up, up);
+					 }
+					 
+					 Node down = getDown(i, j);
+					 if(down!=null&&down.isBlank){
+						 n.canMoveDirection.put(Direction.Down, down);
+					 }
+					 
+					 Node left = getLeft(i, j);
+					 if(left!=null&&left.isBlank){
+						 n.canMoveDirection.put(Direction.Left, left);
+					 }
+					 
+					 Node right = getRight(i, j);
+					 if(right!=null&&right.isBlank){
+						 n.canMoveDirection.put(Direction.Right, right);
+					 }
+					 n.initdegree();
+				}
+			}
+		}
+		//initAccessPoint();
+	}
+	
 	//初始化节点是不是作为一个区域的出入点
 	public void initAccessPoint(){
 		for (int i = 0; i < row; i++) {
@@ -155,7 +187,7 @@ public class NodeMatrix  extends JPanel{
 			return null;
 		}else{
 			return nodes[i][j+1];
-		}	
+		}	 
 	}
 	
 	public static void main(String[] args) {		

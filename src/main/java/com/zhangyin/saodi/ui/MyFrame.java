@@ -14,22 +14,8 @@ import com.zhangyin.saodi.base.Node;
 import com.zhangyin.saodi.base.NodeMatrix;
 
 public class MyFrame  extends JFrame{
-	/** 
-     *  上箭头 
-     */  
-    public static final int KEY_UP = 16777217;  
-    /** 
-     *  下箭头 
-     */  
-    public static final int KEY_DOWN = 16777218;  
-    /** 
-     *  左箭头 
-     */  
-    public static final int KEY_LEFT = 16777219;  
-    /** 
-     *  右箭头 
-     */  
-    public static final int KEY_RIGHT = 16777220;  
+	 
+   
 	
 	public static int widthandHeight=30;
 	
@@ -65,14 +51,14 @@ public class MyFrame  extends JFrame{
 			 @SuppressWarnings("unused")
 			public void mouseClicked(MouseEvent e){
 				 Object source = e.getSource();
-				 if(current==null){
+				 //if(current==null){
 					 Node n= (Node)source;
 					 n.ispassed=true;
 					 current=n;
 					 i=current.i;
 					 j=current.j;
 					 current.repaint();
-				 }
+				// }
 			 }
 		};
 		for (int i = 0; i < nm.row; i++) {
@@ -87,6 +73,10 @@ public class MyFrame  extends JFrame{
 		this.addKeyListener(new java.awt.event.KeyAdapter() { 
 				public void keyPressed(java.awt.event.KeyEvent evt) { 
 					int keyCode = evt.getKeyCode();
+					if(keyCode==32){
+						clear();
+						return;
+					}
 					if(keyCode==38){
 						if(canmove(Direction.Up)){
 							sb.append(Direction.Up);
@@ -114,6 +104,8 @@ public class MyFrame  extends JFrame{
 					current.ispassed=true;
 					current.repaint();
 					showMessage();
+					
+					
 				} 
 			});
 		 
@@ -136,6 +128,22 @@ public class MyFrame  extends JFrame{
 	
 	public void showMessage(){
 		System.out.println("起始坐标 "+i+"    "+j+"  "+sb.toString());
+	}
+	
+	public void clear(){
+		current=null;
+		i=0;
+		j=0;
+		sb=new StringBuffer("");
+		for (int i = 0; i < nm.row; i++) {
+			for (int j = 0; j < nm.col; j++) { 
+				 Node n=nm.nodes[i][j];
+				 if(n.isBlank){
+					n.ispassed=false;
+			}
+		}
+		nm.repaint();
+	}
 	}
 	 
 	 
