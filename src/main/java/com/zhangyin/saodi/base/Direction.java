@@ -84,13 +84,23 @@ public enum Direction {
 		 return isPair(set);
 	 }
 	 //判读两个三度的节点是否满足 AccessPoint的条件
-	 public static boolean isThreeDegreeAccessPoint(Node n,Node node){
+	 public static boolean isThreeDegreeAccessPoint(Node n,Node node,Direction d){
 		 Set<Direction> nSet = n.canMoveDirection.keySet();
 		 assert nSet.size()==3;
 		 Set<Direction> nodeSet = node.canMoveDirection.keySet(); 
 		 assert nodeSet.size()==3;
+		 
 		 Direction nlackofDirection = lackofDirection(nSet);
 		 Direction nodelackofDirection = lackofDirection(nodeSet);
+		 
+		 Set<Direction> temp=new HashSet<Direction>();
+		 temp.add(nodelackofDirection);
+		 temp.add(nlackofDirection);
+		 temp.add(d);
+		 temp.add(getInverseDirection(d));
+		 if(!isFullDirection(temp)){
+			 return false;
+		 }
 		 return isPair(nlackofDirection, nodelackofDirection); 
 	 }
 	 public static Direction [] toArray(Set<Direction> keySet){
@@ -113,6 +123,13 @@ public enum Direction {
 			 i++;
 		 }
 		 return result;
+	 }
+	 
+	 public static boolean isFullDirection(Set<Direction> keySet){
+		 if(keySet.contains(Up)&&keySet.contains(Down)&&keySet.contains(Left)&&keySet.contains(Right)){
+			 return true;
+		 }
+		 return false;
 	 }
 
 }

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import com.zhangyin.saodi.senior.AccessPointType;
 import com.zhangyin.saodi.ui.MyFrame;
 
 public class Node  extends JPanel{
@@ -29,6 +30,8 @@ public class Node  extends JPanel{
 	 public boolean isAccessPoint=false;
 	 
 	 public boolean ispassed=false;
+	 
+	 public AccessPointType  accesspointtype;
 
 	 public Node(boolean isBlank,int i,int j) {
 		super();
@@ -45,6 +48,19 @@ public class Node  extends JPanel{
 			this.setBackground(Color.WHITE);
 		}else{
 			this.setBackground(Color.BLACK);
+		}
+		if(isAccessPoint){
+			switch (accesspointtype) {
+			case TWO:
+				this.setBackground(Color.yellow);
+				break;
+			case ThreetoThree:
+				this.setBackground(Color.BLUE);
+				break;
+			default:
+				break;
+			}
+			
 		}
 		if(ispassed){
 			this.setBackground(Color.green);

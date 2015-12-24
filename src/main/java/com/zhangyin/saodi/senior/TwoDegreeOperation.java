@@ -55,5 +55,40 @@ public class TwoDegreeOperation {
 			}
 		}
 	}
+	
+	public static Boolean TwoDegreeNodeisAccessPoint(Node n){
+		Set<Direction> keySet = n.canMoveDirection.keySet();
+		boolean pair = Direction.isPair(keySet);
+		if(pair){
+			return true;
+		}else{
+			//Direction[] array = (Direction[]) keySet.toArray();
+			Direction[] array=Direction.toArray(keySet);
+			Direction   A=array[0];
+			Direction   B=array[1];
+			Node Anode = n.canMoveDirection.get(A);
+			Node Bnode = n.canMoveDirection.get(B);
+//			if(Anode instanceof VirtualNode ||Bnode instanceof VirtualNode){
+//				return;
+//			}
+			
+			if(Anode.canMoveDirection.get(B)==null&&Bnode.canMoveDirection.get(A)==null){
+				n.isAccessPoint=true;
+				return true;
+			}else if((Anode.canMoveDirection.get(B)!=null&&Bnode.canMoveDirection.get(A)!=null&&Anode.canMoveDirection.get(B) instanceof Node&&Anode.canMoveDirection.get(B)==Bnode.canMoveDirection.get(A))){
+				n.isAccessPoint=false;
+				return false;
+			}else{
+				System.out.println("Anode.canMoveDirection.get(B)="+Anode.canMoveDirection.get(B));
+				System.out.println("Bnode.canMoveDirection.get(A)="+Bnode.canMoveDirection.get(A));
+			}
+			try {
+				throw new IllegalAccessError("正常情况下，不会运行到这");
+			} catch (IllegalAccessError e) {
+				e.printStackTrace();
+			}
+		}
+		return pair;
+	}
 
 }

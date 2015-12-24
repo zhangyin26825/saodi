@@ -14,7 +14,7 @@ public class ThreeDegreeOperation {
 		for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
 			Direction direction = (Direction) iterator.next();
 			Node node = n.canMoveDirection.get(direction);
-			if(node.canMoveDirection.keySet().size()==3&&Direction.isThreeDegreeAccessPoint(n,node)){
+			if(node.canMoveDirection.keySet().size()==3&&Direction.isThreeDegreeAccessPoint(n,node,direction)){
 				new VirtualNode(n, node);
 			}
 		}

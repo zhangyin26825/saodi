@@ -127,7 +127,7 @@ public class MyFrame  extends JFrame{
 	}
 	
 	public void showMessage(){
-		System.out.println("起始坐标 "+i+"    "+j+"  "+sb.toString());
+		System.out.println("起始坐标 "+j+"    "+i+"  "+sb.toString());
 	}
 	
 	public void clear(){
@@ -135,15 +135,7 @@ public class MyFrame  extends JFrame{
 		i=0;
 		j=0;
 		sb=new StringBuffer("");
-		for (int i = 0; i < nm.row; i++) {
-			for (int j = 0; j < nm.col; j++) { 
-				 Node n=nm.nodes[i][j];
-				 if(n.isBlank){
-					n.ispassed=false;
-			}
-		}
-		nm.repaint();
-	}
+		nm.clear();	
 	}
 	 
 	 
