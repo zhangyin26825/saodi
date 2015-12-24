@@ -18,7 +18,6 @@ public class NodeMatrixAnalysis {
 
 	Set<Node> three;
 	
-	
 	Set<Node> TwoAccessPoint;
 	
 	Set<PairAccessPoint>  pairAccessPoint;
