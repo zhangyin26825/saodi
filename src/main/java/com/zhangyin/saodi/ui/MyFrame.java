@@ -127,7 +127,7 @@ public class MyFrame  extends JFrame{
 	}
 	
 	public void showMessage(){
-		System.out.println("起始坐标 "+j+"    "+i+"  "+sb.toString());
+		System.out.println("起始坐标 "+(i+1)+"    "+(j+1)+"  "+sb.toString());
 	}
 	
 	public void clear(){

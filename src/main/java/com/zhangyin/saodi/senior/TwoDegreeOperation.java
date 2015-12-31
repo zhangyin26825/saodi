@@ -73,7 +73,7 @@ public class TwoDegreeOperation {
 //			}
 			
 			if(Anode.canMoveDirection.get(B)==null&&Bnode.canMoveDirection.get(A)==null){
-				n.isAccessPoint=true;
+				//n.isAccessPoint=true;
 				return true;
 			}else if((Anode.canMoveDirection.get(B)!=null&&Bnode.canMoveDirection.get(A)!=null&&Anode.canMoveDirection.get(B) instanceof Node&&Anode.canMoveDirection.get(B)==Bnode.canMoveDirection.get(A))){
 				n.isAccessPoint=false;

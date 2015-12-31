@@ -50,6 +50,11 @@ public class Node  extends JPanel{
 			this.setBackground(Color.BLACK);
 		}
 		if(isAccessPoint){
+			if(accesspointtype==null){
+				this.setBackground(Color.RED);
+				return ;
+			}
+			
 			switch (accesspointtype) {
 			case TWO:
 				this.setBackground(Color.yellow);
