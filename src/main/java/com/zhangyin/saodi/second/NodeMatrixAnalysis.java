@@ -31,7 +31,9 @@ public class NodeMatrixAnalysis {
 		three = nm.getThreeDegreeNodes();
 		System.out.println("只有两度的节点数量为" + two.size());
 		System.out.println("只有三度的节点数量为" + three.size());
+		//初始化两度  
 		initTwoDegreeisAccessPoint();
+		//初始化三度
 		initThreeDegreeisAccessPoint();
 		System.out.println("两度的出入节点的数量为"+TwoAccessPoint.size());
 		System.out.println("三度的出入节点的数量为"+pairAccessPoint.size());

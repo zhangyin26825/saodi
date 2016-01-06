@@ -15,8 +15,7 @@ public class Area {
 	//所有两度的出入点  方向代表出入点的方向
 	Map<Direction,Node>  maps;
 	
-	//三度的节点
-	Set<Node> three;
+
 	
 	
 
@@ -25,7 +24,6 @@ public class Area {
 		super();
 		this.nodes = nodes;
 		this.maps = maps;
-		this.three = three;
 	}
 
 	public Set<Node> getNodes() {
@@ -42,17 +40,5 @@ public class Area {
 
 	public void setMaps(Map<Direction, Node> maps) {
 		this.maps = maps;
-	}
-
-	public Set<Node> getThree() {
-		return three;
-	}
-
-	public void setThree(Set<Node> three) {
-		this.three = three;
-	}
-	
-	
-	
-	
+	}	
 }
